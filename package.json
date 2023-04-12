@@ -10,6 +10,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@octokit/rest": "^19.0.7",
+    "moment": "^2.29.4",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },
