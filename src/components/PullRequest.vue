@@ -75,20 +75,19 @@ export default {
    margin-bottom: 0.35rem;
  }
   .pr-title {
-    font-size: 0.65rem;
     padding-bottom: 0.15rem;
   }
   .tag:not(body) {
-    font-size: 0.55rem;
+    font-size: 0.60rem;
   }
   .time-ago {
-    font-size: 0.55rem;
+    font-size: 0.75rem;
     color: #6a737d;
     padding-top: 0.25rem;
   }
   .icon-text {
     padding-right: 0.25rem;
-    font-size: 0.65rem;
+    font-size: 0.75rem;
   }
   .icon {
     margin-right: -0.35em !important;

@@ -1,5 +1,11 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
 
+@media (prefers-color-scheme: dark) {
+    html {
+        filter: invert(100%) hue-rotate(180deg);
+    }
+}
+
 a {
     color: black;
 }

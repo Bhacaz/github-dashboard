@@ -19,7 +19,9 @@ npm install
 ### Compile and Hot-Reload for Development
 
 ```sh
-npm run dev
+# npm run dev
+
+vercel dev
 ```
 
 ### Compile and Minify for Production

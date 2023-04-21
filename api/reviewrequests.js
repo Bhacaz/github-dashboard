@@ -6,8 +6,8 @@ const octokit = new Octokit({
 });
 
 export default function handler(request, response) {
-    let q = 'is:open is:pr author:@me sort:updated';
-    // let q = 'is:pr is:open review-requested:@me state:open type:pullrequests';
+    // let q = 'is:open is:pr author:@me sort:updated';
+    let q = 'is:pr is:open review-requested:@me state:open type:pullrequests';
     octokit.search.issuesAndPullRequests({ q, order: 'desc' })
         .then(({ data }) => {
             console.log(data);
