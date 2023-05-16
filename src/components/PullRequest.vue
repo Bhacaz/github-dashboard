@@ -11,9 +11,9 @@
         <span class="icon">
           <ion-icon name="chatbox-outline"></ion-icon>
         </span>
-        <span>{{ pullRequest.comments }}</span>
+        <span class="comment-number">{{ pullRequest.comments }}</span>
       </span>
-    <span v-for="label in pullRequest.labels" :key="label.id" class="tag-span">
+      <span v-for="label in pullRequest.labels" :key="label.id" class="tag-span">
       <span class="tag is-rounded" :style="{ background: '#' + label.color, color: getContrastColor(label.color) }">
         {{ label.name }}
       </span>
@@ -86,8 +86,11 @@ export default {
     padding-top: 0.25rem;
   }
   .icon-text {
-    padding-right: 0.25rem;
+    padding-right: 0.45rem;
     font-size: 0.75rem;
+  }
+  .comment-number {
+    padding-left: 0.15rem;
   }
   .icon {
     margin-right: -0.35em !important;

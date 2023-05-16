@@ -1,6 +1,7 @@
 <template>
   <div class="columns">
     <div class="section column is-half">
+      <h1 class="title is-4">My Pull requests</h1>
       <div class="columns is-multiline">
         <div v-for="item in pullRequestsItems" :key="item.id" class="column is-full pullrequest-item">
           <PullRequest :pullRequest="item" />
@@ -9,6 +10,7 @@
     </div>
 
     <div class="section column is-half">
+      <h1 class="title is-4">Review requests</h1>
       <div class="columns is-multiline">
         <div v-for="item in reviewRequestsItems" :key="item.id" class="column is-full pullrequest-item">
           <PullRequest :pullRequest="item" />
