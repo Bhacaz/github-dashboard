@@ -3,8 +3,8 @@ import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
-  Hello
   <main>
-    <TheWelcome />
+    <RouterLink to="/pullrequests">Pull Requests</RouterLink>
+<!--    <TheWelcome />-->
   </main>
 </template>
