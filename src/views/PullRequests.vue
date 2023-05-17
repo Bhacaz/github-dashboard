@@ -1,6 +1,6 @@
 <template>
   <div class="columns">
-    <div class="section column is-half">
+    <div class="section column ">
       <h1 class="title is-4">My Pull requests</h1>
       <div class="columns is-multiline">
         <div v-for="item in pullRequestsItems" :key="item.id" class="column is-full pullrequest-item">
@@ -9,12 +9,19 @@
       </div>
     </div>
 
-    <div class="section column is-half">
+    <div class="section column ">
       <h1 class="title is-4">Review requests</h1>
       <div class="columns is-multiline">
         <div v-for="item in reviewRequestsItems" :key="item.id" class="column is-full pullrequest-item">
           <PullRequest :pullRequest="item" />
         </div>
+      </div>
+
+      <h1 class="title is-4">Team review requests</h1>
+      <div class="columns is-multiline">
+      <div v-for="item in teamreviewrequests" :key="item.id" class="column is-full pullrequest-item">
+        <PullRequest :pullRequest="item" />
+      </div>
       </div>
     </div>
   </div>
@@ -30,6 +37,7 @@ export default {
     return {
       pullRequestsItems: [],
       reviewRequestsItems: [],
+      teamreviewrequests: []
     };
   },
   methods: {
@@ -44,13 +52,21 @@ export default {
       fetch("/api/reviewrequests")
         .then((res) => res.json())
         .then((data) => {
-          this.reviewRequestsItems = data.items;
+          this.reviewRequestsItems = data;
+        });
+    },
+    getReviewRequestedByTeam() {
+      fetch("/api/teamreviewrequests")
+        .then((res) => res.json())
+        .then((data) => {
+          this.teamreviewrequests = data;
         });
     },
   },
   mounted() {
     this.getPullRequests();
     this.getReviewRequests();
+    this.getReviewRequestedByTeam();
   },
 }
 </script>
@@ -68,6 +84,7 @@ export default {
 
   .pullrequest-item:last-child {
     border-bottom: 0;
+    padding-bottom: 1.75em;
   }
 
   .section {
