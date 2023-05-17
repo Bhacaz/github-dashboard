@@ -7,6 +7,13 @@
           <PullRequest :pullRequest="item" />
         </div>
       </div>
+
+      <h1 class="title is-4">Assignee to me</h1>
+      <div class="columns is-multiline">
+        <div v-for="item in assigneeToMe" :key="item.id" class="column is-full pullrequest-item">
+          <PullRequest :pullRequest="item" />
+        </div>
+      </div>
     </div>
 
     <div class="section column ">
@@ -37,7 +44,8 @@ export default {
     return {
       pullRequestsItems: [],
       reviewRequestsItems: [],
-      teamreviewrequests: []
+      teamreviewrequests: [],
+      assigneeToMe: []
     };
   },
   methods: {
@@ -47,6 +55,13 @@ export default {
         .then((data) => {
           this.pullRequestsItems = data.items;
         });
+    },
+    getAssigneeToMe() {
+      fetch("/api/assigneetome")
+          .then((res) => res.json())
+          .then((data) => {
+            this.assigneeToMe = data.items;
+          });
     },
     getReviewRequests() {
       fetch("/api/reviewrequests")
@@ -67,6 +82,7 @@ export default {
     this.getPullRequests();
     this.getReviewRequests();
     this.getReviewRequestedByTeam();
+    this.getAssigneeToMe();
   },
 }
 </script>
