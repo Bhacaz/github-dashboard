@@ -1,37 +1,39 @@
 <template>
-  <div class="columns">
-    <div class="section column ">
-      <h1 class="title is-4">My Pull requests</h1>
-      <div class="columns is-multiline">
-        <div v-for="item in pullRequestsItems" :key="item.id" class="column is-full pullrequest-item">
-          <PullRequest :pullRequest="item" />
+  <section class="section">
+    <div class="columns">
+      <div class="section column ">
+        <h1 class="title is-4">My Pull requests</h1>
+        <div class="columns is-multiline">
+          <div v-for="item in pullRequestsItems" :key="item.id" class="column is-full pullrequest-item">
+            <PullRequest :pullRequest="item" />
+          </div>
+        </div>
+
+        <h1 class="title is-4">Assignee to me</h1>
+        <div class="columns is-multiline">
+          <div v-for="item in assigneeToMe" :key="item.id" class="column is-full pullrequest-item">
+            <PullRequest :pullRequest="item" />
+          </div>
         </div>
       </div>
 
-      <h1 class="title is-4">Assignee to me</h1>
-      <div class="columns is-multiline">
-        <div v-for="item in assigneeToMe" :key="item.id" class="column is-full pullrequest-item">
+      <div class="section column ">
+        <h1 class="title is-4">Review requests</h1>
+        <div class="columns is-multiline">
+          <div v-for="item in reviewRequestsItems" :key="item.id" class="column is-full pullrequest-item">
+            <PullRequest :pullRequest="item" />
+          </div>
+        </div>
+
+        <h1 class="title is-4">Team review requests</h1>
+        <div class="columns is-multiline">
+        <div v-for="item in teamreviewrequests" :key="item.id" class="column is-full pullrequest-item">
           <PullRequest :pullRequest="item" />
+        </div>
         </div>
       </div>
     </div>
-
-    <div class="section column ">
-      <h1 class="title is-4">Review requests</h1>
-      <div class="columns is-multiline">
-        <div v-for="item in reviewRequestsItems" :key="item.id" class="column is-full pullrequest-item">
-          <PullRequest :pullRequest="item" />
-        </div>
-      </div>
-
-      <h1 class="title is-4">Team review requests</h1>
-      <div class="columns is-multiline">
-      <div v-for="item in teamreviewrequests" :key="item.id" class="column is-full pullrequest-item">
-        <PullRequest :pullRequest="item" />
-      </div>
-      </div>
-    </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -106,5 +108,4 @@ export default {
   .section {
     padding-top: 2rem;
   }
-
 </style>
