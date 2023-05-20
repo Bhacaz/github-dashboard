@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="time-ago">
-      {{ extractGitHubPullRequestInfo(pullRequest.html_url) }} - <strong>{{ getTimeAgo(pullRequest.updated_at) }}</strong>
+      <span class="has-text-primary">{{ extractGitHubPullRequestInfo(pullRequest.html_url) }}</span> - <strong>{{ getTimeAgo(pullRequest.updated_at) }}</strong>
     </div>
     <h6 class="pr-title">
       <a :href="pullRequest.html_url" target="_blank">{{ pullRequest.title }}</a>
@@ -69,7 +69,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
  .tag-span {
    margin-right: 0.5rem;
    margin-bottom: 0.35rem;
