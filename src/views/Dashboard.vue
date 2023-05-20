@@ -40,7 +40,7 @@
 import PullRequest from "../components/PullRequest.vue";
 
 export default {
-  name: "PullRequests",
+  name: "Dashboard",
   components: {PullRequest},
   data() {
     return {

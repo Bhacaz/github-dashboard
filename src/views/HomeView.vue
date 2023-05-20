@@ -4,7 +4,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <template>
   <main>
-    <RouterLink to="/pullrequests">Pull Requests</RouterLink>
+    <RouterLink to="/dashboard">Dashboard</RouterLink>
 <!--    <TheWelcome />-->
   </main>
 </template>
