@@ -2,46 +2,24 @@
   <section class="section">
     <div class="columns">
       <div class="prs-section section column ">
-        <h1 class="title is-4 title-shadow">My Pull requests</h1>
-        <div class="columns is-multiline">
-          <div v-for="item in pullRequestsItems" :key="item.id" class="column is-full pullrequest-item">
-            <PullRequest :pullRequest="item" />
-          </div>
-        </div>
-
-        <h1 class="title is-4 title-shadow">Assignee to me</h1>
-        <div class="columns is-multiline">
-          <div v-for="item in assigneeToMe" :key="item.id" class="column is-full pullrequest-item">
-            <PullRequest :pullRequest="item" />
-          </div>
-        </div>
+        <PullRequestsList title="My Pull Requets" itemsToFetchParams="pullrequests"/>
+        <PullRequestsList title="Assignee to me" itemsToFetchParams="assigneetome"/>
       </div>
 
       <div class="prs-section section column ">
-        <h1 class="title is-4 title-shadow">Review requests</h1>
-        <div class="columns is-multiline">
-          <div v-for="item in reviewRequestsItems" :key="item.id" class="column is-full pullrequest-item">
-            <PullRequest :pullRequest="item" />
-          </div>
-        </div>
-
-        <h1 class="title is-4 title-shadow">Team review requests</h1>
-        <div class="columns is-multiline">
-        <div v-for="item in teamreviewrequests" :key="item.id" class="column is-full pullrequest-item">
-          <PullRequest :pullRequest="item" />
-        </div>
-        </div>
+        <PullRequestsList title="Review requests" itemsToFetchParams="reviewrequests"/>
+        <PullRequestsList title="Team review requests" itemsToFetchParams="teamreviewrequests"/>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import PullRequest from "../components/PullRequest.vue";
+import PullRequestsList from "@/components/PullRequestsList.vue";
 
 export default {
   name: "Dashboard",
-  components: {PullRequest},
+  components: {PullRequestsList},
   data() {
     return {
       pullRequestsItems: [],
@@ -81,10 +59,10 @@ export default {
     },
   },
   mounted() {
-    this.getPullRequests();
-    this.getReviewRequests();
-    this.getReviewRequestedByTeam();
-    this.getAssigneeToMe();
+    // this.getPullRequests();
+    // this.getReviewRequests();
+    // this.getReviewRequestedByTeam();
+    // this.getAssigneeToMe();
   },
 }
 </script>
@@ -93,9 +71,6 @@ export default {
  .pullrequest-item {
    padding-bottom: 0.35rem;
    padding-top: 0.15rem;
- }
-
- .pullrequest-item {
    margin-left: 0.15rem;
  }
 
@@ -107,11 +82,7 @@ export default {
     padding-top: 2rem;
   }
 
-  .prs-section {
-    //border-left: 0.05em solid #7de381;
-  }
-
-  .title-shadow {
+  .title-border-bottom {
     border: 1px solid;
     border-image-slice: 1;
     border-width: 2px;
