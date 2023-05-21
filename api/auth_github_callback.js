@@ -9,18 +9,17 @@ export default function handler(request, response) {
                 Accept: "application/json",
             },
             body: JSON.stringify({
-                client_id: process.env.GITHUB_CLIENT_ID,
+                client_id: process.env.VITE_GITHUB_CLIENT_ID,
                 client_secret: process.env.GITHUB_CLIENT_SECRET,
                 code,
             }),
         })
             .then(auth_response => auth_response.json() )
             .then((data) => {
-            console.log(data);
             const accessToken = data.access_token;
 
             // Set the access token as an HTTP cookie
-            response.setHeader('Set-Cookie', `access_token=${accessToken}; Path=/; HttpOnly`);
+            response.setHeader('Set-Cookie', `gh_access_token=${accessToken}; Path=/; HttpOnly`);
 
             // Redirect the user to a different URL
             response.setHeader('Location', '/dashboard');

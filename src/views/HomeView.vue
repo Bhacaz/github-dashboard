@@ -5,11 +5,11 @@
         <h1 class="title is-3 has-text-centered">
           <RouterLink to="/dashboard">GitHub PullRequests<br>Dashboard</RouterLink>
         </h1>
-      </div>
-      <div class="block">
-        <a @click="initiateOAuthFlow()" class="button is-primary is-fullwidth">
-          <span>Login with GitHub</span>
-        </a>
+        <div class="is-fullwidth has-text-centered">
+          <a id="login-button" @click="initiateOAuthFlow()" class="button is-primary mx-auto">
+            <span>Login with GitHub</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -30,5 +30,7 @@ const githubRedirectUri = import.meta.env.VITE_GITHUB_REDIRECT_URI;
 </script>
 
 <style scoped lang="scss">
-
+  #login-button:hover {
+   background: linear-gradient(120deg, #54b4bb, #7de381);
+  }
 </style>

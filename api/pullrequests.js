@@ -1,8 +1,13 @@
 const { Octokit } = require('@octokit/rest');
 
-const octokit = new Octokit({
-    auth: process.env.GH_TOKEN
-});
+let octokit;
+let ghUsername;
+
+function initOctokit(request) {
+    octokit = new Octokit({
+        auth: request.cookies.gh_access_token
+    });
+}
 
 const PRQUERY = 'is:open is:pr author:@me sort:updated';
 const ASSIGNTOMEQUERY = 'is:open is:pr assignee:@me sort:updated';
@@ -32,9 +37,19 @@ async function fetchPullRequest(owner, repo, pull_number) {
         });
 }
 
+async function initGhUsername() {
+    return octokit.users.getAuthenticated()
+        .then(({ data }) => {
+            ghUsername = data.login;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
 async function fetchAllIndividualPRs() {
     const allReviewRequestedPR = await allReviewRequested();
-
+    await initGhUsername();
     let individualPRs = allReviewRequestedPR.items.map((item) => {
         let [owner, repo, pullString, pull_number] = item.html_url.split('/').slice(-4);
         return fetchPullRequest(owner, repo, pull_number);
@@ -49,7 +64,7 @@ function fetchReviewAssignPullRequests(response, { reviewKind }) {
         const reviews = [];
         allIndividualPRs.forEach((pr) => {
             let directReviewRequest = pr.requested_reviewers.filter((reviewer) => {
-                return reviewer.login === process.env.GH_USERNAME;
+                return reviewer.login === ghUsername;
             });
             if (reviewKind === 'direct' && directReviewRequest.length > 0) {
                 reviews.push(pr);
@@ -73,6 +88,7 @@ function searchIssuesAndPullRequests(q, response) {
 }
 
 export default function handler(request, response) {
+    initOctokit(request);
     switch (request.query.itemsToFetchParams) {
         case 'pullrequests':
             return searchIssuesAndPullRequests(PRQUERY, response);
