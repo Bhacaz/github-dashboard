@@ -6,6 +6,9 @@
         <PullRequest :pullRequest="item" />
       </div>
     </div>
+    <div v-if="!items" class="block mx-6 pb-6 pt-1">
+      <progress class="progress is-small is-primary" max="100">15%</progress>
+    </div>
   </div>
 </template>
 
@@ -65,5 +68,9 @@ export default {
 
   .pullrequest-item:last-child {
     padding-bottom: 2.6em;
+  }
+
+  .progress.is-small {
+    height: 0.35rem;
   }
 </style>
