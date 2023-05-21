@@ -11,7 +11,8 @@ $title-color: $text;
 
 //*https://realtimecolors.com/?colors=ffffff-191615-54b4bb-f1fefc-7de381*/
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+
 $family-primary: 'Roboto Mono', monospace;
 
 @media (prefers-color-scheme: light) {
