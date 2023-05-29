@@ -2,7 +2,7 @@
   <section class="section">
     <div class="columns">
       <div class="prs-section section column ">
-        <PullRequestsList title="My Pull Requets" itemsToFetchParams="pullrequests"/>
+        <PullRequestsList title="My Pull Requests" itemsToFetchParams="pullrequests"/>
         <PullRequestsList title="Assignee to me" itemsToFetchParams="assigneetome"/>
       </div>
 
