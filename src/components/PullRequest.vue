@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="time-ago">
-      <span class="has-text-primary">{{ extractGitHubPullRequestInfo(pullRequest.html_url) }}</span> - <strong>{{ getTimeAgo(pullRequest.updated_at) }}</strong>
+      <span :class="{ 'has-text-grey-light': pullRequest.draft, 'has-text-primary': !pullRequest.draft }">{{ extractGitHubPullRequestInfo(pullRequest.html_url) }}</span> - <strong>{{ getTimeAgo(pullRequest.updated_at) }}</strong>
     </div>
     <h6 class="pr-title">
       <a :href="pullRequest.html_url" target="_blank">{{ pullRequest.title }}</a>
