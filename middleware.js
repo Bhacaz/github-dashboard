@@ -3,8 +3,9 @@ export default function middleware(request) {
 
     if (url.pathname.startsWith('/dashboard') || url.pathname.startsWith('/api/pullrequests')) {
         let token;
-        let ghAccessTokenCookie = request.headers.get('cookie').split('; ').find(row => row.startsWith('github_dashboard_token'))
-        if (ghAccessTokenCookie) {
+        const cookies = request.headers.get('cookie') || '';
+        let ghAccessTokenCookie = cookies.split('; ').find(row => row.startsWith('github_dashboard_token'))
+        if (cookies) {
             token = ghAccessTokenCookie.split('=')[1];
         }
         if (!token) {
