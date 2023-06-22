@@ -1,3 +1,4 @@
+const encryption = require('../utils/encryption');
 export default function handler(request, response) {
     const { code } = request.query; // retrieve the authorization code from the query parameters
 
@@ -17,15 +18,16 @@ export default function handler(request, response) {
             .then(auth_response => auth_response.json() )
             .then((data) => {
             const accessToken = data.access_token;
+            const encryptedAccessToken = encryption.encrypt(accessToken);
 
             // Set the access token as an HTTP cookie
-            response.setHeader('Set-Cookie', `gh_access_token=${accessToken}; Path=/; HttpOnly`);
+            response.setHeader('Set-Cookie', `github_dashboard_token=${encryptedAccessToken}; Path=/; HttpOnly`);
 
             // Redirect the user to a different URL
             response.setHeader('Location', '/dashboard');
             response.status(302).end();
         })
         .catch((error) => {
-            response.status(error.status).json(error);
+            response.status(500).json(error);
         });
 };

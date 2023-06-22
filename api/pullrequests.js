@@ -1,11 +1,13 @@
 const { Octokit } = require('@octokit/rest');
+const encryption = require('../utils/encryption');
 
 let octokit;
 let ghUsername;
 
 function initOctokit(request) {
+    const accessToken = encryption.decrypt(request.cookies.github_dashboard_token);
     octokit = new Octokit({
-        auth: request.cookies.gh_access_token
+        auth: accessToken
     });
 }
 
