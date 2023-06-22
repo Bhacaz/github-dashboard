@@ -20,8 +20,10 @@ export default function handler(request, response) {
             const accessToken = data.access_token;
             const encryptedAccessToken = encryption.encrypt(accessToken);
 
+            const setSecure = process.env.VERCEL_ENV === 'production' ? 'Secure' : '';
+            const expireInOneWeek = `Max-Age=${60 * 60 * 24 * 7}`;
             // Set the access token as an HTTP cookie
-            response.setHeader('Set-Cookie', `github_dashboard_token=${encryptedAccessToken}; Path=/; HttpOnly`);
+            response.setHeader('Set-Cookie', `github_dashboard_token=${encryptedAccessToken}; ${expireInOneWeek}; Path=/; HttpOnly; ${setSecure}`);
 
             // Redirect the user to a different URL
             response.setHeader('Location', '/dashboard');
